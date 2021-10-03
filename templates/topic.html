@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p>{{ topic }}</p>
+    <p>
+        <a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a>
+    </p>
+    <ul>
+        {% for entry in entries %}
+            <li>
+                <p>{{ entry.date_added }}</p>
+                <p>{{ entry.text }}</p>
+                <p>
+                    <a href="{% url 'learning_logs:edit_entry' entry.id %}">Edit entry</a>
+                </p>
+            </li>
+            {% empty %}
+            <li>Щось пішло не так...</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
